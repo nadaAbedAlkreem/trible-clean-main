@@ -1,0 +1,27 @@
+.dataTables_wrapper .dataTables_paginate,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_filter {
+    display: none;
+}
+
+#updates_tables {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#updates_tables thead {
+    display: none; /* Hide headers */
+}
+
+#updates_tables tbody tr {
+    border: none; /* Hide borders */
+}
+
+#updates_tables td {
+    border: none; /* Hide borders */
+    padding: 0; /* Remove padding if needed */
+}
+
+.dataTables_wrapper {
+    padding: 0;
+}
