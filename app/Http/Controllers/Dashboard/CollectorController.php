@@ -5,9 +5,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Collector;
 use App\Http\Requests\StoreCollectorRequest;
 use App\Http\Requests\UpdateCollectorRequest;
+use App\Repositories\ICollectorRepository;  //RepresentativeRepository
+use Illuminate\Http\Request;
 
 class CollectorController extends Controller
 {
+
+    private    $collectorRepository   ;   
+    public function __construct(
+        ICollectorRepository $collectorRepository   ,
+ 
+        ){
+    
+            $this->collectorRepository = $collectorRepository;
+        }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +29,16 @@ class CollectorController extends Controller
     {
         //
     }
-
+    public function getCollector(Request $request)
+    {
+        $search = $request->input('q'); // Get the search term
+        
+        // $items = Item::where('name', 'like', "%{$search}%") // Adjust the column name as needed
+        //     ->select('id', 'name')
+        //     ->get();
+        return $this->collectorRepository->getWhereSerach([['name', 'like', "%{$search}%"]]);
+  
+     }
     /**
      * Show the form for creating a new resource.
      *

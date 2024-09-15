@@ -1,0 +1,21 @@
+#background {
+    background:#ffff !important 
+}    
+#data-table-attachment-images {
+    width: 250px !important;
+}
+
+.data-table-updates  {
+    width: 520px !important;
+}
+
+        /* Apply styles to Select2 container */
+.select2-container .select2-selection--single {
+        height: 30px !important; /* Set the height */
+        border: 1px solid black !important; /* Set the border */
+}
+
+/* Set the height of the dropdown arrow (caret) */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 30px !important;
+    }

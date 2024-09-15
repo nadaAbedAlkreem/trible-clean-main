@@ -3,6 +3,7 @@
     /**
      * Setup dropzone
      */
+    $('#item-select').select2({theme: 'bootstrap4'});
 
     let myDropzonePayment;
 
@@ -92,8 +93,10 @@ $(document).ready(function() {
                 $('.total_amount').text(response.total_amount);
                 $('.total_amount_paid').text(response.total_paid);
                 $('.remaining_amount').text(response.residual);
+                document.getElementById('remaining').value = response.residual;
+
                 $('#payment_form')[0].reset(); // Reset form fields
-                $('.gallery').empty(); // Clear any previously added files or images
+                myDropzonePayment.removeAllFiles(true);
 
                 // Show success message
                 Swal.fire({
@@ -191,6 +194,32 @@ $(document).ready(function() {
                 }
             });
         });
+    });
+
+    $('#item-select').select2({
+        ajax: {
+            url: 'collector', // URL to fetch data
+            dataType: 'json',
+            delay: 250,
+            data: function(params) {
+                return {
+                    q: params.term // Search term
+                };
+            },
+            processResults: function(data) {
+                // Map the data into the format expected by Select2
+                return {
+                    results: $.map(data, function(item) {
+                        return {
+                            id: item.id,
+                            text: item.name
+                        };
+                    })
+                };
+            },
+            cache: true
+        },
+        minimumInputLength: 1 // Minimum characters required to trigger the search
     });
 
 });

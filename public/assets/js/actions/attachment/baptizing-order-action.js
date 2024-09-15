@@ -67,7 +67,8 @@ $(document).ready(function() {
                                 {
                                 console.log(response);
                                 console.log("response");
-                
+                                myDropzoneBaptizing.removeAllFiles(true);
+
                                 Swal.fire({
                                                text: " نجحت   عملية اضافة  العنصر  !",
                                                 icon: "success",

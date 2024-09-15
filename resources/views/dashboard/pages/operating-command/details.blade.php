@@ -1,15 +1,7 @@
 @extends('dashboard.layout.app')
 
 @section('content')
-<style>
-#data-table-attachment-images {
-    width: 250px !important;
-}
-
-.data-table-updates  {
-    width: 520px !important;
-}
- </style>   
+ 
  
             <main style="float:left;">
                 <h2 class="main-heading">
@@ -1136,7 +1128,15 @@
                             </div>
                             <div>
                             <label for="collector_id">الشخص المحصل</label>
-                            <input type="text" name = "collector_id" id="collector_id">
+ 
+                                <select id="item-select" class="collector_id"   
+                                style="width: 100% !important; border: 1px solid black !important; height: 30px !important;"
+                                value = "collector_id" 
+                                name = "collector_id" >
+                                            <option value="">Select an item</option>
+                               </select>
+
+                                  
                             </div>
                             <div>
                             <label for="payment-date">التاريخ</label>

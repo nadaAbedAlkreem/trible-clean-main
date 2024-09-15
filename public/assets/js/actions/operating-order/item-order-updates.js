@@ -106,9 +106,11 @@ $(document).ready(function() {
                                 {
                                 console.log(response);
                                 console.log("response");
-                
+                                table.draw();
+                                myDropzoneUpdate.removeAllFiles(true);
+
                                 Swal.fire({
-                                    text: " نجحت   عملية اضافة  العنصر  !",
+                                    text: " نجحت   عملية اضافة  العنصر  ",
                                     icon: "success",
                                                 buttonsStyling: false,
                                                 confirmButtonText: "Ok, got it!",

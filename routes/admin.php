@@ -42,6 +42,8 @@ use Illuminate\Support\Facades\Route;
     Route::delete('purchase/{id}',[App\Http\Controllers\Dashboard\PurchaseOrderController::class,'destroy'] )->name('purchase.delete');
     Route::delete('payment/{id}',[App\Http\Controllers\Dashboard\PaymentController::class,'destroy'] )->name('payment.delete');
     Route::post('operatingOrder/update',[App\Http\Controllers\Dashboard\OperatingOrderController::class,'update'] )->name('operatingOrder.update');
+    Route::get('/collector', [App\Http\Controllers\Dashboard\CollectorController::class, 'getCollector'])->name('collector.get');
+
 //payment  
 //attachment
 

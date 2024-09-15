@@ -136,10 +136,21 @@ abstract class BaseRepository implements BaseRepositoryInterface
      * retrieve all the rows matching the where condition
      * @params OPTIONAL $orderBy with the column name && dir
      */
-    public function getWhere(array $data, $orderBy = ['column' => 'id', 'dir' => 'DESC'])
+    public function getWhere(array $conditions, $orderBy = ['column' => 'id', 'dir' => 'DESC'])
     {
         return $this->model->where($data)->orderBy($orderBy['column'], $orderBy['dir'])->get();
+
+        
     }
+
+    public function getWhereSerach( $conditions, $orderBy = ['column' => 'id', 'dir' => 'DESC'])
+    {
+        return $this->model->where($conditions)->orderBy($orderBy['column'], $orderBy['dir'])->get();
+
+        
+    }
+
+ 
     
     public function getWhereYear($column , $operator ,$val, array $data, $orderBy = ['column' => 'id', 'dir' => 'DESC'])
     {

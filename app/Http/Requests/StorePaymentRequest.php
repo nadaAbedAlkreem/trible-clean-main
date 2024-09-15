@@ -27,6 +27,7 @@ class StorePaymentRequest extends FormRequest
     public function rules()
     {   
         $remaining = floatval($this->input('remaining'));
+
          return [
             'operating_order_id' => 'required|exists:operating_orders,id', // Ensures the operation_order_id exists in the operation_orders table
             'amount' => ['required', 'numeric', 'min:0',new ResidualEqualToZero($remaining) , new LessThanOrEqualToResidual($remaining)],

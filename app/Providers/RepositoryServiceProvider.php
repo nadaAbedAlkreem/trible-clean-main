@@ -24,8 +24,10 @@ use App\Repositories\IRepresentativeRepository;
 use App\Repositories\Eloquent\RepresentativeRepository;
 use App\Repositories\IInvoiceRepository;
 use App\Repositories\Eloquent\InvoiceRepository;
-use App\Repositories\IUpdateRepository;
+use App\Repositories\IUpdateRepository;  //Collector
 use App\Repositories\Eloquent\UpdateRepository;
+use App\Repositories\ICollectorRepository;  //Collector
+use App\Repositories\Eloquent\CollectorRepository;
 class RepositoryServiceProvider extends ServiceProvider
 {
     /**
@@ -52,6 +54,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IRepresentativeRepository::class, RepresentativeRepository::class);
         $this->app->bind(IUpdateRepository::class, UpdateRepository::class);
         $this->app->bind(IInvoiceRepository::class, InvoiceRepository::class);
+        $this->app->bind(ICollectorRepository::class, CollectorRepository::class);
  
     }
 
