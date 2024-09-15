@@ -94,7 +94,12 @@ $(document).ready(function() {
                 $('.total_amount_paid').text(response.total_paid);
                 $('.remaining_amount').text(response.residual);
                 document.getElementById('remaining').value = response.residual;
-
+                console.log(response.paid_status);
+                const paymentStatusSelect = document.getElementById('payment_status');
+                paymentStatusSelect.value = response.paid_status; 
+                
+                // Using jQuery
+ 
                 $('#payment_form')[0].reset(); // Reset form fields
                 myDropzonePayment.removeAllFiles(true);
 
@@ -103,7 +108,7 @@ $(document).ready(function() {
                     text: " نجحت   عملية اضافة  العنصر  !",
                     icon: "success",
                     buttonsStyling: false,
-                    confirmButtonText: "حسنا، حصلت عليه!",
+                    confirmButtonText: "حسنا!",
                     customClass: {
                         confirmButton: "btn btn-primary"
                     }
@@ -121,7 +126,7 @@ $(document).ready(function() {
                     text: response.responseJSON.message,
                     icon: "error",
                     buttonsStyling: false,
-                    confirmButtonText: "حسنا، حصلت عليه!",
+                    confirmButtonText: "حسنا!",
                     customClass: {
                         confirmButton: "btn btn-primary"
                     }
@@ -176,10 +181,10 @@ $(document).ready(function() {
                         error: function(xhr, status, error) {
                             console.log(error);
                             Swal.fire({
-                                text: "يوجد لديك خطأ في عملية الحدذ تأكد من عدم وجود عناصر مرتبطة به",
+                                text: "يوجد لديك خطأ في عملية الحذف تأكد من عدم وجود عناصر مرتبطة به",
                                 icon: "error",
                                 buttonsStyling: false,
-                                confirmButtonText: "حسنا، حصلت عليه!",
+                                confirmButtonText: "حسنا  !",
                                 customClass: 
                                 {
                                     confirmButton: "btn btn-primary"

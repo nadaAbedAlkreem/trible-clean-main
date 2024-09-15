@@ -113,7 +113,7 @@ $(document).ready(function() {
                                     text: " نجحت   عملية اضافة  العنصر  ",
                                     icon: "success",
                                                 buttonsStyling: false,
-                                                confirmButtonText: "حسنا، حصلت عليه!",
+                                                confirmButtonText: "حسنا،    !",
                                                 customClass: 
                                                 {
                                                     confirmButton: "btn btn-primary"
@@ -132,8 +132,8 @@ $(document).ready(function() {
                                                         text:  response.responseJSON.message  , 
                                                         icon: "error",
                                                         buttonsStyling: false,
-                                                        confirmButtonText: "حسنا، حصلت عليه!",
-                                                            customClass: {
+                                                        confirmButtonText: "حسنا!",
+                                                            customClass: { 
                                                                 confirmButton: "btn btn-primary"
                 
                                                                 }

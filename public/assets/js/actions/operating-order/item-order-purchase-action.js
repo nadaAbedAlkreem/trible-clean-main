@@ -84,10 +84,10 @@ $(document).ready(function() {
                         error: function(xhr, status, error) {
                             console.log(error);
                             Swal.fire({
-                                text: "يوجد لديك خطأ في عملية الحدذ تأكد من عدم وجود عناصر مرتبطة به",
+                                text: "يوجد لديك خطأ في عملية الحذف تأكد من عدم وجود عناصر مرتبطة به",
                                 icon: "error",
                                 buttonsStyling: false,
-                                confirmButtonText: "حسنا، حصلت عليه!",
+                                confirmButtonText: "حسنا!",
                                 customClass: 
                                 {
                                     confirmButton: "btn btn-primary"

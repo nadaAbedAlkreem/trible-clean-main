@@ -75,7 +75,7 @@ $(document).ready(function() {
                                                 text: " نجحت عملية التحديث",
                                                 icon: "success",
                                                 buttonsStyling: false,
-                                                confirmButtonText: "حسنا، حصلت عليه",
+                                                confirmButtonText: "حسنا،    ",
                                                 customClass: 
                                                 {
                                                     confirmButton: "btn btn-primary"
@@ -139,7 +139,7 @@ $(document).ready(function() {
                     text: " نجحت   عملية  تحديث  ",
                     icon: "success",
                     buttonsStyling: false,
-                    confirmButtonText: "حسنا، حصلت عليه",
+                    confirmButtonText: "حسنا، ",
                     customClass: 
                     {
                         confirmButton: "btn btn-primary"
@@ -230,10 +230,10 @@ $(document).ready(function() {
                         error: function(xhr, status, error) {
                             console.log(error);
                             Swal.fire({
-                                text: "You have error in delete this item ! Make sure this item is not linked to other items.",
+                                text: "يوجد لديك خطأ في عملية الحذف تأكد من عدم وجود عناصر مرتبطة به",
                                 icon: "error",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "حسنا",
                                 customClass: 
                                 {
                                     confirmButton: "btn btn-primary"

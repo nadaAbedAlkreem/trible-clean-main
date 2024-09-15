@@ -49,23 +49,45 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
+
         $this->paymentRepository->create($request->getDataWithImage());
+
         $operating_order = $this->operatingOrderRepository->findWith(
             $request->input('operating_order_id'),
             ['payments']
         );
+
     
         $totalAmount = $operating_order->payments->sum('amount');
         $residual = $operating_order->total_amount - $totalAmount;
-    
+        $paid_status = " " ; 
+        if($residual == 0.00)
+        { 
+                $this->operatingOrderRepository->update(['payment_status' =>"paid" ], 1) ;
+                $paid_status = "paid"  ; 
+        } elseif ($residual >= 0.00  )
+        {
+ 
+            $paid_status = $this->operatingOrderRepository->update(['payment_status' =>"partially-paid" ], 1) ;
+            $paid_status = "partially-paid"  ; 
+
+        }  else 
+        {
+            $paid_status = $this->operatingOrderRepository->update(['payment_status' =>"unpaid" ], 1) ;
+            $paid_status = "unpaid"  ; 
+
+        }
+
         // Return updated values
         return response()->json([
             'total_amount' => $operating_order->total_amount,
             'total_paid' => $totalAmount,
-            'residual' => $residual,
+            'residual' => $residual, 
+            'paid_status' => $paid_status
         ]);
-        return response()->json();
-    }
+
+
+     }
 
     /**
      * Display the specified resource.
