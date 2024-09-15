@@ -70,10 +70,10 @@ $(document).ready(function() {
                                 myDropzoneBaptizing.removeAllFiles(true);
 
                                 Swal.fire({
-                                               text: " نجحت   عملية اضافة  العنصر  !",
+                                               text: " نجحت   عملية اضافة  العنصر   ",
                                                 icon: "success",
                                                 buttonsStyling: false,
-                                                confirmButtonText: "Ok, got it!",
+                                                confirmButtonText: "حسنا، حصلت عليه!",
                                                 customClass: 
                                                 {
                                                     confirmButton: "btn btn-primary"
@@ -92,8 +92,8 @@ $(document).ready(function() {
                                                         text:  response.responseJSON.message  , 
                                                         icon: "error",
                                                         buttonsStyling: false,
-                                                        confirmButtonText: "Ok, got it!",
-                                                            customClass: {
+                                                        confirmButtonText: "حسنا، حصلت عليه!",
+                                                        customClass: {
                                                                 confirmButton: "btn btn-primary"
                 
                                                                 }

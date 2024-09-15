@@ -162,7 +162,7 @@ $(document).ready(function() {
                                 text: "يوجد لديك خطأ في عملية الحدذ تأكد من عدم وجود عناصر مرتبطة به",
                                 icon: "error",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "حسنا، حصلت عليه!",
                                 customClass: 
                                 {
                                     confirmButton: "btn btn-primary"
@@ -229,7 +229,7 @@ $(document).ready(function() {
                                                 text: " نجحت     عملية اضافة  العنصر  !",
                                                 icon: "success",
                                                 buttonsStyling: false,
-                                                confirmButtonText: "Ok, got it!",
+                                                confirmButtonText: "حسنا، حصلت عليه!",
                                                 customClass: 
                                                 {
                                                     confirmButton: "btn btn-primary"
@@ -248,8 +248,8 @@ $(document).ready(function() {
                                                         text:  response.responseJSON.message  , 
                                                         icon: "error",
                                                         buttonsStyling: false,
-                                                        confirmButtonText: "Ok, got it!",
-                                                            customClass: {
+                                                        confirmButtonText: "حسنا، حصلت عليه!",
+                                                        customClass: {
                                                                 confirmButton: "btn btn-primary"
                 
                                                                 }

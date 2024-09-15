@@ -72,10 +72,10 @@ $(document).ready(function() {
                                 table.draw();
 
                                 Swal.fire({
-                                                text: " نجحت عملية التحديث!",
+                                                text: " نجحت عملية التحديث",
                                                 icon: "success",
                                                 buttonsStyling: false,
-                                                confirmButtonText: "Ok, got it!",
+                                                confirmButtonText: "حسنا، حصلت عليه",
                                                 customClass: 
                                                 {
                                                     confirmButton: "btn btn-primary"
@@ -136,10 +136,10 @@ $(document).ready(function() {
             },
             success: function(response) {
                 Swal.fire({
-                    text: " نجحت   عملية  تحديث     !",
+                    text: " نجحت   عملية  تحديث  ",
                     icon: "success",
                     buttonsStyling: false,
-                    confirmButtonText: "Ok, got it!",
+                    confirmButtonText: "حسنا، حصلت عليه",
                     customClass: 
                     {
                         confirmButton: "btn btn-primary"
@@ -209,7 +209,7 @@ $(document).ready(function() {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
+                confirmButtonText: " نعم ,  احذفه !",
             }).then((willDelete) => {
                 if (willDelete.isConfirmed) {
                     var id = $(this).data("id");
