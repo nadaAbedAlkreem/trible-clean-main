@@ -174,8 +174,18 @@ $(document).ready(function() {
                         },
                         success: function () {
                             console.log("it Works");
-                       
+                             
+                    
                             $(".data-table-payment").DataTable().ajax.reload();
+
+                            $('.total_amount').text(response.total_amount);
+                            $('.total_amount_paid').text(response.total_paid);
+                            $('.remaining_amount').text(response.residual);
+                            document.getElementById('remaining').value = response.residual;
+                            console.log(response.paid_status);
+                            const paymentStatusSelect = document.getElementById('payment_status');
+                            paymentStatusSelect.value = response.paid_status; 
+                    
                         },
 
                         error: function(xhr, status, error) {

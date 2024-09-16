@@ -56,6 +56,9 @@ $(document).ready(function() {
         ordering: false,
         searching: false,
         info: false,
+        scrollY: '50vh', // Vertical scroll height
+        scrollX: true,   // Enable horizontal scrolling
+        scrollCollapse: true, // Collapse the scroll when fewer records are displayed
 
         ajax: {
             url: "details",

@@ -33,10 +33,9 @@ class CollectorController extends Controller
     {
         $search = $request->input('q'); // Get the search term
         
-        // $items = Item::where('name', 'like', "%{$search}%") // Adjust the column name as needed
-        //     ->select('id', 'name')
-        //     ->get();
-        return $this->collectorRepository->getWhereSerach([['name', 'like', "%{$search}%"]]);
+ 
+        return    $this->collectorRepository->getWhereSerach([['name', 'like', "%{$search}%"]]);
+        
   
      }
     /**
