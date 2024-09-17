@@ -219,10 +219,12 @@ $(document).ready(function() {
             data: function(params) {
                 return {
                     q: params.term // Search term
+                    
                 };
             },
             processResults: function(data) {
                 // Map the data into the format expected by Select2
+                console.log(data);
                 return {
                     results: $.map(data, function(item) {
                         return {

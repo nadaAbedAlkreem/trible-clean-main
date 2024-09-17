@@ -20,8 +20,13 @@ class PurchaseOrderItemsDatatableService extends Controller
              return DataTables::of($data)
                     ->addIndexColumn()
                     
-                    ->filter(function ($instance) use ($request) {
-                    
+                    ->filter(function ($query) use ($request) {
+                      if ($request->has('searchInput') && !empty($request->searchInput)) {
+                          $query->where('id', $request->searchInput);
+                      }
+          
+ 
+        
                        })
                      ->addColumn('action', function ($data)
                       {

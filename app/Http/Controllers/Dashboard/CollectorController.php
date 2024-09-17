@@ -31,13 +31,10 @@ class CollectorController extends Controller
     }
     public function getCollector(Request $request)
     {
-        $search = $request->input('q'); // Get the search term
-        
- 
-        return    $this->collectorRepository->getWhereSerach([['name', 'like', "%{$search}%"]]);
-        
-  
-     }
+        $search = $request->input('q'); // Get the search term    
+         return $this->collectorRepository->getWhereSerach([['name', 'like', "%{$search}%"]]);;
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

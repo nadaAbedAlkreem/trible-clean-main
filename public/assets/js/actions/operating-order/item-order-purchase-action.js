@@ -19,8 +19,10 @@ $(document).ready(function() {
 
         ajax: {
             url: "details",
+            
             data: {
-                service_type: 'purchase_order_items',
+                service_type: 'purchase_order_items',//searchInput
+                searchInput: $('#searchInput').val(),//searchInput
                 // other parameters if needed
             },
         },
@@ -41,7 +43,7 @@ $(document).ready(function() {
     });
 
     // Event listeners for filtering
-    $('#search').keyup(function() {
+    $('#searchInput').keyup(function() {
         table.draw();
     });
 
