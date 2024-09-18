@@ -114,6 +114,7 @@ class OperatingOrderController extends Controller
     {
         $operating_order = $this->operatingOrderRepository->findWith(1 , ['customer','invoice',  'representative' ,'attachments' ,   'orderItems.item' , 'updates'  , 'orderItems.purchaseOrders']);
         $item_order = $this->itemOrderRepository->getWith(['item'  , 'operatingOrder']);
+ 
         $payment_order = $this->paymentRepository->getWith(['operatingOrder.orderItems', 'collector']);
         $totalAmount = $this->paymentRepository->getTotalAmountByOperatingOrder(1);
         $purchaseOrders = $this->purchaseOrderRepository->getWith(['orderItems' ]);

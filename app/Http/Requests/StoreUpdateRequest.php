@@ -26,7 +26,7 @@ class StoreUpdateRequest extends FormRequest
     {
         return [
             'operating_order_id' => 'required|exists:operating_orders,id', // Ensure the operation_order_id exists in the operation_orders table
-            'file_path' => 'required|file|mimes:jpeg,png,pdf|max:2048',
+            'file_path' => 'file|mimes:jpeg,png,pdf|max:2048',
             'description_ar' => 'required|string|max:255',
          ];
     }

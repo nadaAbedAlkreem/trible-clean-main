@@ -224,7 +224,8 @@ $(document).ready(function() {
                                 $("#data-table-attachment-images").DataTable().ajax.reload();
                                 $('.attachment_form')[0].reset(); // Reset form fields
                                 myDropzone.removeAllFiles(true);
-                
+                                var closeButtons = document.getElementsByClassName('close-pop-up');
+                                closeButtons[0].click();
                                 Swal.fire({
                                                 text: " نجحت     عملية اضافة  العنصر  !",
                                                 icon: "success",

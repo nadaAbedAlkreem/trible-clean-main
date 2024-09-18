@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('operating_order_id')->constrained('operating_orders');
-            $table->foreignId('collector_id')->constrained('collectors');
+            $table->foreignId('operating_order_id')->constrained('operating_orders')->index();
+            $table->foreignId('collector_id')->constrained('collectors')->index();
             $table->decimal('amount', 10, 2);
-            $table->date('payment_date');
-            $table->string('payment_method');
+            $table->date('payment_date')->index();
+            $table->string('payment_method')->index();
             $table->string('file');   
             $table->text('notes')->nullable();
             $table->timestamps();

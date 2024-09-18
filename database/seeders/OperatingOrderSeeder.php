@@ -19,6 +19,7 @@ class OperatingOrderSeeder extends Seeder
         DB::table('operating_orders')->insert([
             [
                 'customer_id' => 1, // Assuming customer with ID 1 exists
+                'representative_id' => 1, // Assuming customer with ID 1 exists
                 'order_number' => 'ORD-0001',
                 'order_date' => '2024-09-10',
                 'status' => 'in_progress',
@@ -29,7 +30,8 @@ class OperatingOrderSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'customer_id' => 2, // Assuming customer with ID 2 exists
+                'customer_id' => 2, // Assuming customer with ID 1 exists  //representative_id
+                'representative_id' => 2, // Assuming customer with ID 1 exists  //representative_id
                 'order_number' => 'ORD-0002',
                 'order_date' => '2024-09-10',
                 'status' => 'pending',

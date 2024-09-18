@@ -102,6 +102,8 @@ $(document).ready(function() {
  
                 $('#payment_form')[0].reset(); // Reset form fields
                 myDropzonePayment.removeAllFiles(true);
+                var closeButtons = document.getElementsByClassName('close-pop-up');
+                closeButtons[0].click();
 
                 // Show success message
                 Swal.fire({
@@ -172,7 +174,7 @@ $(document).ready(function() {
                             id: id,
                             _token: token,
                         },
-                        success: function () {
+                        success: function (response) {
                             console.log("it Works");
                              
                     

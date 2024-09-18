@@ -111,6 +111,8 @@ $(document).ready(function() {
                                 console.log("response");
                                 table.draw();
                                 myDropzoneUpdate.removeAllFiles(true);
+                                var closeButtons = document.getElementsByClassName('close-pop-up');
+                                closeButtons[0].click();
 
                                 Swal.fire({
                                     text: " نجحت   عملية اضافة  العنصر  ",

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('operating_order_id')->constrained('operating_orders');
+            $table->foreignId('operating_order_id')->constrained('operating_orders')->index();
             $table->string('file_path');
-            $table->integer('number_invoice');
+            $table->integer('number_invoice')->index();
             $table->decimal('amount_Invoice', 12, 2); // Profit amount
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

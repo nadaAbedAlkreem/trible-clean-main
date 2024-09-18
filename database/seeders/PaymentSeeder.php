@@ -18,7 +18,7 @@ class PaymentSeeder extends Seeder
 
  
         DB::table('payments')->insert([
-            'operation_order_id' => 1, // Add appropriate operation order ID
+            'operating_order_id' => 1, // Add appropriate operation order ID
             'collector_id' => 1,
             'amount' => 1500.00,
             'payment_date' => now(),

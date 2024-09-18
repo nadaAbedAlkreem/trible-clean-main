@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('name_ar');
-            $table->string('name_en')->nullable();
+            $table->string('name_ar')->index();
+            $table->string('name_en')->nullable()->index();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

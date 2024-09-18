@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('representatives', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone_number');
-            $table->string('email')->unique();
+            $table->string('name')->index();
+            $table->string('phone_number')->index();
+            $table->string('email')->unique()->index();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

@@ -81,6 +81,7 @@ $(document).ready(function() {
                         success: function () {
                             console.log("it Works");
                             $(".data-table-purchase").DataTable().ajax.reload();
+
                         },
 
                         error: function(xhr, status, error) {

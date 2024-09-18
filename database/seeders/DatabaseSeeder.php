@@ -18,11 +18,13 @@ class DatabaseSeeder extends Seeder
             // CustomerSeeder::class,
             // ItemSeeder::class,
             // OperatingOrderSeeder::class,
-            // ItemOrderSeeder::class,
-            // PurchaseOrderSeeder::class,
-            //   CollectorSeeder::class,
+            PurchaseOrderSeeder::class,
             //   PaymentSeeder::class,
-             RepresentativeSeeder::class,
+            //  RepresentativeSeeder::class,
+            //  CollectorSeeder::class,
+            //  ItemOrderSeeder::class,
+
+
         ]);
     }
 }

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('operating_orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('customers');
-            $table->foreignId('representative_id')->constrained('representatives');
+            $table->foreignId('customer_id')->constrained('customers')->index();
+            $table->foreignId('representative_id')->constrained('representatives')->index();
             $table->string('order_number');
             $table->date('order_date');// Paid and unpaid
             $table->enum('status', ['in_progress', 'completed' , 'pending'  ,'canceled']);

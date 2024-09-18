@@ -20,7 +20,7 @@ class ItemOrderSeeder extends Seeder
     {
         DB::table('order_items')->insert([
             [
-                'operation_order_id' => 1, // Assuming order with ID 1 exists
+                'operating_order_id' => 1, // Assuming order with ID 1 exists
                 'item_id' => 1, // Assuming item with ID 1 exists
                 'description_ar' => 'طلبية قلم',
                 'description_en' => 'Order for Pen',

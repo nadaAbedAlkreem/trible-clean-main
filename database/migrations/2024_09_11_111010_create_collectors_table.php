@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('collectors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone_number')->nullable();
-            $table->string('email')->nullable();
+            $table->string('name')->index();
+            $table->string('phone_number')->nullable()->index();
+            $table->string('email')->nullable()->index();
             $table->text('address')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

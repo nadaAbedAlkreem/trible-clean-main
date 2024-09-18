@@ -678,14 +678,14 @@
                     </p>
                 </footer>
             </main>
-                <div class="pop-ups hidden removed">
+                <div class="pop-ups   removed">
                     <div class="pop-up-oveylay"></div>
                     <div class="pop-up" style="display: none;">
                     <h3 class="pop-up-header">
                         <span>
                         إضافة مرفقات
                         </span>
-                        <div class="close-pop-up">
+                        <div class="close-pop-up" id="closePopUp" >
                         <svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i class="fa-solid fa-xmark"></i> Font Awesome fontawesome.com -->
                         </div>
                     </h3>
@@ -722,7 +722,7 @@
                             <h4>مرفقات أخرى</h4>
                         </div>
                         </div>
-                        <div class="drop-area"> 
+                        <div class="drop-area" > 
                         <form  class="attachment_form" class="dropzone overflow-visible p-0"     enctype="multipart/form-data">
                             @csrf
                             
@@ -861,43 +861,7 @@
                     </form>
                     </div>
 
-                    <!-- <div id="download-popup" class="pop-up" style="display: none;">
-                    <h3 class="pop-up-header">
-                        <span>
-                         اضافة صور العمل  
-                        </span>
-                        <div class="close-pop-up">
-                        <svg class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg>  <i class="fa-solid fa-xmark"></i>   
-                        </div>
-                    </h3> -->
-
-                    
-                    <!-- <form  class="attachment_form"    enctype="multipart/form-data">
-                        
-                            @csrf
-                          <div>
-                          <input type="hidden" id = "operating_order_id" name="operating_order_id" value="{{$operating_order->id}}">
-                          <input type="hidden" id = "file_type" name="file_type" value="work_images">
-
-                        <label for="add-asset-btn">
-                            <span>
-                            <svg class="svg-inline--fa fa-plus" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"></path></svg> 
-                            </span>
-                        </label>
-                        <input type="file"  name = "file_path"  id="add-asset-btn">
-                        <h4>إرفاق صورة</h4>
-                        </div>
-               
-                        <div>
-                        <label for="name"></label>
-                        <input type="text" id="name" name ="name" placeholder="اسم المرفق ">
-                        </div>
-                        <div class="pop-up-form-btns">
-                        <button type="submit"  class="btn btn-primary"> حفظ </button>
-                        <input type="reset" value="إلغاء">
-                        </div>
-                    </form>
-                    </div> -->
+            
                     <div class="pop-up" style="display: none;">
                     <h3 class="pop-up-header">
                         <span>
@@ -951,25 +915,27 @@
                              @if(!empty($item_order))   
                               <?php   $delivery= 0  ;   $remaining_total = 0 ;   $total_quantity  = 0 ?> 
                              @foreach($item_order as   $index =>  $order)
-                                 <?php $delivery  += $order->delivered_quantity ;   $total_quantity += $order->total_quantity ?> 
-                                <tr>
-                                <td>  {{$order->item->name_ar }}  </td>
-                                <td>  {{$order->description_ar}}</td>
-                                <td>
-                                    {{ $order->total_quantity}}
-                                </td>
-                                <td>
-                                   <input type="number" name="items[{{ $index }}][delivered_quantity]" value="{{ $order->delivered_quantity }}">
-                                   <input type="hidden" name="items[{{ $index }}][total_quantity]" value=" {{ $order->total_quantity}}">
+                                @if($order->operating_order_id == 1) 
+                                    <?php $delivery  += $order->delivered_quantity ;   $total_quantity += $order->total_quantity ?> 
+                                        <tr>
+                                        <td>  {{$order->item->name_ar }}  </td>
+                                        <td>  {{$order->description_ar}}</td>
+                                        <td>
+                                            {{ $order->total_quantity}}
+                                        </td>
+                                        <td>
+                                        <input type="number" name="items[{{ $index }}][delivered_quantity]" value="{{ $order->delivered_quantity }}">
+                                        <input type="hidden" name="items[{{ $index }}][total_quantity]" value=" {{ $order->total_quantity}}">
 
-                                   <input type="hidden" name="items[{{ $index }}][id]" value="{{ $order->id }}">
-                               </td>
-                                <td>
-                                    <?php  $remaining_ = $order->total_quantity - $order->delivered_quantity  ?>
-                                     {{$remaining_}}
-                                     <?php  $remaining_total += $remaining_ ;   ?>
-                                </td>
-                                </tr>
+                                        <input type="hidden" name="items[{{ $index }}][id]" value="{{ $order->id }}">
+                                    </td>
+                                        <td>
+                                            <?php  $remaining_ = $order->total_quantity - $order->delivered_quantity  ?>
+                                            {{$remaining_}}
+                                            <?php  $remaining_total += $remaining_ ;   ?>
+                                        </td>
+                                        </tr>
+                                @endif        
                             @endforeach    
                            @endif 
  
@@ -1247,8 +1213,8 @@
                     </div>
                     </div>
                 </div>
-            <script src="{{asset('assets/Triple Clean_files/all.min.js.تنزيل')}}"></script>
-            <script src="{{asset('assets/Triple Clean_files/main.js.تنزيل')}}"></script>
+            <script src="{{asset('assets/Triple Clean_files/all.min.js')}}"></script>
+            <script src="{{asset('assets/Triple Clean_files/main.js')}}"></script>
    
 
             
