@@ -227,7 +227,7 @@
                             </div>
                             <div class="change">
                             <h4>المصروفات</h4>
-                            <h2 class ="Expenses">{{$totalPriceAfterTax}}</h2>
+                            <h2 class ="Expenses" id = "expenses">{{$totalPriceAfterTax}}</h2>
                             <span>SAR</span>
                             </div>
                             <div class="paid">
@@ -235,12 +235,17 @@
                              <?php 
                              $amountTotal = floatval($operating_order->total_amount);
                              $totalExpenses = floatval($totalPriceAfterTax);
-
+                             $profit = 0 ; 
+                             if($totalExpenses == 0.00)
+                             {
+                                 $profit = 0 ; 
+                             }else{
                              $profit
                              = $amountTotal - $totalExpenses;
+                             }
                          ?>
                         
-                            <h2 class ="profit_amount" > {{$profit}}</h2>
+                            <h2 class ="profit_amount" id  = "profit" > {{$profit}}</h2>
                             <span>SAR</span>                          
                             </div>
                         </div>
@@ -261,7 +266,7 @@
 
   
                         <div class="table-container">
-                            <table id="table" class ="data-table" >
+                            <table id="data-table-item" class ="data-table" >
                             <thead>
                                 <tr>
                                     <th onclick="sortTable(0)">
@@ -600,7 +605,12 @@
                                 @foreach($operating_order->attachments  as $attachment)
                                     @if($attachment->file_type == "design")
                                         <div class="asset-wrapper">
-                                            <img src="{{asset('storage/'.$attachment->file_path)}}" alt="">
+                                            <img  style  = "
+                                             margin: 10px;
+                                             width: 60px;    
+                                             height: 60px;      
+                                             border-radius: 10px;   
+                                             object-fit: cover;" src="{{asset                                    ('storage/'.$attachment->file_path)}}" alt="">
                                             <span>صورة ملف التصميم</span>
                                         </div>
                                     @endif   
@@ -615,7 +625,11 @@
                             @if(!empty($operating_order->invoice)) 
                              @foreach($operating_order->invoice as $invoice)
                                          <div class="asset-wrapper">
-                                            <img src="{{asset('storage/'.$invoice->file_path)}}" alt="">
+                                            <img src="{{asset('storage/'.$invoice->file_path)}}"  style  = "                                         margin: 10px;
+                                             width: 60px;    
+                                             height: 60px;      
+                                             border-radius: 10px;   
+                                             object-fit: cover;"  alt="">
                                             <span>   صورة الفاتورة   </span>
                                         </div>
                               @endforeach        
@@ -629,7 +643,12 @@
                                 @foreach($operating_order->attachments  as $attachment)
                                     @if($attachment->file_type == "delivery_notice")
                                         <div class="asset-wrapper">
-                                            <img src="{{asset('storage/'.$attachment->file_path)}}" alt="">
+                                            <img src="{{asset('storage/'.$attachment->file_path)}}"  style  = "
+                                             margin: 10px;
+                                             width: 60px;    
+                                             height: 60px;      
+                                             border-radius: 10px;   
+                                             object-fit: cover;"  alt="">
                                             <span>إشعار التسليم  </span>
                                         </div>
                                     @endif   
@@ -644,7 +663,12 @@
                                 @foreach($operating_order->attachments  as $attachment)
                                     @if($attachment->file_type == "other_attachment")
                                         <div class="asset-wrapper">
-                                            <img src="{{asset('storage/'.$attachment->file_path)}}" alt="">
+                                            <img src="{{asset('storage/'.$attachment->file_path)}}" style  = "
+                                             margin: 10px;
+                                             width: 60px;    
+                                             height: 60px;      
+                                             border-radius: 10px;   
+                                             object-fit: cover;"  alt="">
                                             <span>   اخرى مرفقات   </span>
                                         </div>
                                     @endif   
@@ -659,7 +683,12 @@
                                 @foreach($operating_order->attachments  as $attachment)
                                     @if($attachment->file_type == "baptizing")
                                         <div class="asset-wrapper">
-                                            <img src="{{asset('storage/'.$attachment->file_path)}}" alt="">
+                                            <img src="{{asset('storage/'.$attachment->file_path)}}" style  = " 
+                                             margin: 10px;
+                                             width: 60px;    
+                                             height: 60px;      
+                                             border-radius: 10px;   
+                                             object-fit: cover;"  alt="">
                                             <span>      التعميد   </span>
                                         </div>
                                     @endif   

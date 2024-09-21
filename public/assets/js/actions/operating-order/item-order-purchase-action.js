@@ -22,8 +22,7 @@ $(document).ready(function() {
             
             data: {
                 service_type: 'purchase_order_items',//searchInput
-                searchInput: $('#searchInput').val(),//searchInput
-                // other parameters if needed
+                 // other parameters if needed
             },
         },
         columns: [

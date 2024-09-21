@@ -120,10 +120,17 @@ class OperatingOrderController extends Controller
         $purchaseOrders = $this->purchaseOrderRepository->getWith(['orderItems' ]);
         $totalPriceAfterTax = 0;
              foreach ($purchaseOrders as $purchaseOrder) {
-                 if($purchaseOrder->orderItems['operating_order_id']  == 1)
-                {
-                    $totalPriceAfterTax += floatval($purchaseOrder->total_price_after_tax);
+                if(!empty($purchaseOrder)){
+                    if(!empty($purchaseOrder->orderItems))
+                    {
+                        if($purchaseOrder->orderItems['operating_order_id']  == 1)
+                        {
+                            $totalPriceAfterTax += floatval($purchaseOrder->total_price_after_tax);
+                        }
+                    }
+                
                 }
+            
             }
         $orderItems = $operating_order->orderItems;
 

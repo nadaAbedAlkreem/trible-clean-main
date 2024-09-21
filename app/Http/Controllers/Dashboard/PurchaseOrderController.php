@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PurchaseOrder;
 use App\Repositories\IPurchaseOrderRepository;
+use App\Repositories\IOperatingOrderRepository;
 use App\Http\Requests\StorePurchaseOrderRequest;
 use App\Http\Requests\UpdatePurchaseOrderRequest;
 
@@ -20,9 +21,10 @@ class PurchaseOrderController extends Controller
 
      private $purchaseOrderRepository ;
 
-     public function __construct(IPurchaseOrderRepository $purchaseOrderRepository   ){
+     public function __construct(IPurchaseOrderRepository $purchaseOrderRepository , IOperatingOrderRepository $operatingOrderRepository   ){
  
          $this->purchaseOrderRepository = $purchaseOrderRepository;
+         $this->operatingOrderRepository = $operatingOrderRepository;
          
      }
 
@@ -95,5 +97,25 @@ class PurchaseOrderController extends Controller
     public function destroy($id)
     {
          $this->purchaseOrderRepository->delete($id);
+          $totalPriceAfterTax = 0;
+            $purchase_orders  = $this->purchaseOrderRepository->getWith(['orderItems' ]);
+             $operating_order = $this->operatingOrderRepository->findOne(1);
+             foreach ($purchase_orders as $purchaseOrder) {
+               if(!empty($purchaseOrder)){
+                   if(!empty($purchaseOrder->orderItems)){
+                   if($purchaseOrder->orderItems['operating_order_id']  == 1)
+                {
+                    $totalPriceAfterTax += floatval($purchaseOrder->total_price_after_tax);
+                }
+                   }
+               }
+            }
+                         $profit          = $operating_order->total_amount - $totalPriceAfterTax    ; 
+
+            
+              return response()->json([
+             'totalPriceAfterTax' => $totalPriceAfterTax ,
+             'profit'             => $profit
+        ]);
     }
 }

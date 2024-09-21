@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 
     // Initialize DataTable
-    var table = $('.data-table').DataTable({
+    var table = $('#data-table-item').DataTable({
         processing: true,
         serverSide: true,
         paging: false,
@@ -198,7 +198,7 @@ $(document).ready(function() {
 
 
 
-    $(".data-table").on("click", ".deleteRecord[data-id]", function (e) 
+    $("#data-table-item").on("click", ".deleteRecord[data-id]", function (e) 
     {
 
         e.preventDefault();
@@ -225,7 +225,7 @@ $(document).ready(function() {
                         },
                         success: function () {
                             console.log("it Works");
-                            $(".data-table").DataTable().ajax.reload();
+                            $("#data-table-item").DataTable().ajax.reload();
                         },
 
                         error: function(xhr, status, error) {
