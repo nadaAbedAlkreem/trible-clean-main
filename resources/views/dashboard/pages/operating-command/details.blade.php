@@ -1,7 +1,9 @@
 @extends('dashboard.layout.app')
 
 @section('content')
- 
+<h2 class="main-heading">
+            تجريب 
+                </h2>  
  
             <main style="float:left;">
                 <h2 class="main-heading">
