@@ -1,9 +1,7 @@
 @extends('dashboard.layout.app')
 
 @section('content')
-<h2 class="main-heading">
-            تجريب 
-                </h2>  
+  
  
             <main style="float:left;">
                 <h2 class="main-heading">
@@ -788,8 +786,11 @@
                                     <input type="text" id="file-name" name ="file_name" placeholder="اسم المرفق">
                                 </div>
                             <div class="pop-up-form-btns">
-                            <button type="submit"  class="btn btn-primary"> حفظ
-                                                                     </button>
+                                   <button type="submit"  class="btn btn-primary">
+                                           <span class="indicator-label">save</span>
+                                           <span class="indicator-progress" style = "display:none">Please wait...
+                                           <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                   </button> 
                             <input type="reset" value="إلغاء">
                             </div>
                         </form>
@@ -836,8 +837,11 @@
                         <textarea id="asset-name" name="description_ar" placeholder="تفاصيل التحديث"></textarea>
                         </div>
                         <div class="pop-up-form-btns">
-                            <button type="submit"  class="btn btn-primary"> حفظ
-                                                                     </button>
+                        <button type="submit"  class="btn btn-primary">
+                                           <span class="indicator-label">save</span>
+                                           <span class="indicator-progress" style = "display:none">Please wait...
+                                           <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                         </button> 
                             <input type="reset" value="إلغاء">
                        </div>
                     </form>
@@ -886,7 +890,12 @@
                         <input type="number" id="bill-money" name ="amount_Invoice" placeholder="مبلغ الفاتورة">
                         </div>
                         <div class="pop-up-form-btns">
-                        <button type="submit"  class="btn btn-primary"> حفظ </button>
+                        <button type="submit"  class="btn btn-primary">
+                                           <span class="indicator-label">save</span>
+                                           <span class="indicator-progress" style = "display:none">Please wait...
+                                           <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                   </button> 
+                 
                         <input type="reset" value="إلغاء">
                         </div>
                     </form>
@@ -980,7 +989,12 @@
                         </div>
                       
                         <div class="pop-up-btns">
-                        <button type="submit"  class="btn btn-primary"> حفظ </button>
+                        <button type="submit"  class="btn btn-primary">
+                                           <span class="indicator-label">save</span>
+                                           <span class="indicator-progress" style = "display:none">Please wait...
+                                           <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                       </button> 
+                     
                         <input type="reset" value="إلغاء">
                         </div>
                     </form>
@@ -1050,8 +1064,12 @@
                             <input type="text" id="asset-name"  name = "file_name"  placeholder="اسم المرفق">
                         </div>
                         <div class="pop-up-form-btns">
-                        <button type="submit"  class="btn btn-primary"> حفظ
-                        </button>                            <input type="reset" value="إلغاء">
+                        <button type="submit"  class="btn btn-primary">
+                                           <span class="indicator-label">save</span>
+                                           <span class="indicator-progress" style = "display:none">Please wait...
+                                           <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button> 
+                       <input type="reset" value="إلغاء">
                         </div>
                         <div class="admission">
                         <h4>
@@ -1165,8 +1183,11 @@
                                 </div>
                         <div class="gallery"></div>
                         <div class="pop-up-form-btns">
-                        <button type="submit"  class="btn btn-primary"> حفظ
-                        </button>
+                        <button type="submit"  class="btn btn-primary">
+                                           <span class="indicator-label">save</span>
+                                           <span class="indicator-progress" style = "display:none">Please wait...
+                                           <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button> 
                         <input type="reset" value="إلغاء">
                         </div>
                         </form>
@@ -1202,8 +1223,12 @@
                         </div>
                         
                         <div class="pop-up-form-btns">
-                            <input type="submit" value="حفظ">
-                            <input type="reset" value="إلغاء">
+                        <button type="submit"  class="btn btn-primary">
+                                           <span class="indicator-label">save</span>
+                                           <span class="indicator-progress" style = "display:none">Please wait...
+                                           <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button> 
+                         <input type="reset" value="إلغاء">
                         </div>
                         </form>
                     </div>
@@ -1237,8 +1262,12 @@
                         </div>
                         
                         <div class="pop-up-form-btns">
-                            <input type="submit" value="حفظ">
-                            <input type="reset" value="إلغاء">
+                        <button type="submit"  class="btn btn-primary">
+                                           <span class="indicator-label">save</span>
+                                           <span class="indicator-progress" style = "display:none">Please wait...
+                                           <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                         </button>                            
+                         <input type="reset" value="إلغاء">
                         </div>
                         </form>
                     </div>
@@ -1252,12 +1281,7 @@
 
    
         </body> 
-                        <script>
-
-                            
-                        </script>
-
- 
+          
 
 @endsection
 

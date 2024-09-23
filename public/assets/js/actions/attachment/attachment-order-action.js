@@ -41,6 +41,8 @@ Dropzone.autoDiscover = false;
         }
     });
 
+ 
+                                
 document.addEventListener('DOMContentLoaded', function () {
     // Select all asset type divs
     // dropzone image 
@@ -196,7 +198,17 @@ $(document).ready(function() {
     {   
                     
                     e.preventDefault();
-    
+                        let submitButton = this;
+                        submitButton.disabled = true; // Disable the button to prevent multiple submissions
+                        let indicatorLabel = submitButton.querySelector(".indicator-label");
+                        let indicatorProgress = submitButton.querySelector(".indicator-progress");
+                
+                        indicatorLabel.style.display = "none";
+                        indicatorProgress.style.display = "inline-block";
+                
+                    
+          
+
                         let formData = new FormData($('.attachment_form')[0]);
                         console.log(formData);
                         myDropzone.getAcceptedFiles().forEach(file => {
@@ -220,12 +232,16 @@ $(document).ready(function() {
                                 success:function(response)
                                 {
                                 console.log(response);
-                                console.log("response");
+                                submitButton.disabled = false;
+                                indicatorLabel.style.display = "inline-block";
+                                indicatorProgress.style.display = "none";
                                 $("#data-table-attachment-images").DataTable().ajax.reload();
                                 $('.attachment_form')[0].reset(); // Reset form fields
                                 myDropzone.removeAllFiles(true);
                                 var closeButtons = document.getElementsByClassName('close-pop-up');
                                 closeButtons[0].click();
+
+                        
                                 Swal.fire({
                                                 text: " نجحت     عملية اضافة  العنصر  !",
                                                 icon: "success",
@@ -244,6 +260,9 @@ $(document).ready(function() {
                                 error: function(response) 
                                     {
                                         console.log(response)  ; 
+                                        submitButton.disabled = false;
+                                        indicatorLabel.style.display = "inline-block";
+                                        indicatorProgress.style.display = "none";
                                             Swal.fire(
                                                 {
                                                         text:  response.responseJSON.message  , 
@@ -263,6 +282,9 @@ $(document).ready(function() {
 
 
 
+
+
+                
 });
 
 

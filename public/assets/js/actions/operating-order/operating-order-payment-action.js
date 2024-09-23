@@ -71,6 +71,15 @@ $(document).ready(function() {
     // Handle form submission
     $('#payment_form').on('submit', function(e) {
         e.preventDefault();
+        let submitButton = this;
+        submitButton.disabled = true; // Disable the button to prevent multiple submissions
+        let indicatorLabel = submitButton.querySelector(".indicator-label");
+        let indicatorProgress = submitButton.querySelector(".indicator-progress");
+
+        indicatorLabel.style.display = "none";
+        indicatorProgress.style.display = "inline-block";
+
+    
         let formData = new FormData(this);
 
         console.log(formData);
@@ -104,6 +113,9 @@ $(document).ready(function() {
                 myDropzonePayment.removeAllFiles(true);
                 var closeButtons = document.getElementsByClassName('close-pop-up');
                 closeButtons[0].click();
+                submitButton.disabled = false;
+                indicatorLabel.style.display = "inline-block";
+                indicatorProgress.style.display = "none";
 
                 // Show success message
                 Swal.fire({
@@ -122,6 +134,9 @@ $(document).ready(function() {
             error: function(response) {
                 console.log(response);
                 myDropzonePayment.removeAllFiles(true);
+                submitButton.disabled = false;
+                indicatorLabel.style.display = "inline-block";
+                indicatorProgress.style.display = "none";
 
                 // Show error message
                 Swal.fire({

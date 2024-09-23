@@ -43,7 +43,15 @@ $(document).ready(function() {
     {   
                     
                     e.preventDefault();
-    
+                    let submitButton = this;
+                    submitButton.disabled = true; // Disable the button to prevent multiple submissions
+                    let indicatorLabel = submitButton.querySelector(".indicator-label");
+                    let indicatorProgress = submitButton.querySelector(".indicator-progress");
+            
+                    indicatorLabel.style.display = "none";
+                    indicatorProgress.style.display = "inline-block";
+            
+                
                         let formData = new FormData(this); 
  
 
@@ -72,6 +80,11 @@ $(document).ready(function() {
                                 myDropzoneInvoice.removeAllFiles(true);
                                 var closeButtons = document.getElementsByClassName('close-pop-up');
                                 closeButtons[0].click();
+                                submitButton.disabled = false;
+                                indicatorLabel.style.display = "inline-block";
+                                indicatorProgress.style.display = "none";
+
+                            
                                 Swal.fire({
                                                 text: " نجحت   عملية اضافة  العنصر  !",
                                                 icon: "success",
@@ -90,6 +103,10 @@ $(document).ready(function() {
                                 error: function(response) 
                                     {
                                         console.log(response)  ; 
+                                        submitButton.disabled = false;
+                                        indicatorLabel.style.display = "inline-block";
+                                        indicatorProgress.style.display = "none";
+        
                                             Swal.fire(
                                                 {
                                                         text:  response.responseJSON.message  , 
