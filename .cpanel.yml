@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/huluzvqf/bsmathber.com 
+    - /bin/cp -r * $DEPLOYPATH
