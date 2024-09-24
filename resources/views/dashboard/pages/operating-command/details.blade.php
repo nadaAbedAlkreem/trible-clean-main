@@ -1,12 +1,13 @@
 @extends('dashboard.layout.app')
 
 @section('content')
-  
  
+
             <main style="float:left;">
                 <h2 class="main-heading">
                 تفاصيل أمر التشغيل
-                </h2>               
+                </h2>          
+                     
  @if(!empty($operating_order))               
                 <div class="main-id english">
                     <h4>ID:</h4>
@@ -604,13 +605,15 @@
                                @if(!empty($operating_order->attachments)) 
                                 @foreach($operating_order->attachments  as $attachment)
                                     @if($attachment->file_type == "design")
+                                   <?php $url =  $attachment->file_path  ; 
+                                    $url_= (app()->environment('production'))? asset("public/storage/$url") : asset("/storage/$url");?>               
                                         <div class="asset-wrapper">
                                             <img  style  = "
                                              margin: 10px;
                                              width: 60px;    
                                              height: 60px;      
                                              border-radius: 10px;   
-                                             object-fit: cover;" src="{{asset                                    ('storage/'.$attachment->file_path)}}" alt="">
+                                             object-fit: cover;" src="{{$url_}}" alt="">
                                             <span>صورة ملف التصميم</span>
                                         </div>
                                     @endif   
@@ -624,8 +627,10 @@
                             <div class="assets-part-imgs">
                             @if(!empty($operating_order->invoice)) 
                              @foreach($operating_order->invoice as $invoice)
+                             <?php $url = $invoice->file_path ; 
+                                   $url_= (app()->environment('production'))? asset("public/storage/$url") : asset("/storage/$url");?>   
                                          <div class="asset-wrapper">
-                                            <img src="{{asset('storage/'.$invoice->file_path)}}"  style  = "                                         margin: 10px;
+                                            <img src="{{$url_}}"  style  = "margin: 10px;
                                              width: 60px;    
                                              height: 60px;      
                                              border-radius: 10px;   
@@ -642,8 +647,10 @@
                             @if(!empty($operating_order->attachments)) 
                                 @foreach($operating_order->attachments  as $attachment)
                                     @if($attachment->file_type == "delivery_notice")
+                                    <?php $url = $attachment->file_path ; 
+                                    $url_= (app()->environment('production'))? asset("public/storage/$url") : asset("/storage/$url");?>   
                                         <div class="asset-wrapper">
-                                            <img src="{{asset('storage/'.$attachment->file_path)}}"  style  = "
+                                            <img src="{{$url_}}"  style  = "
                                              margin: 10px;
                                              width: 60px;    
                                              height: 60px;      
@@ -662,8 +669,10 @@
                             @if(!empty($operating_order->attachments)) 
                                 @foreach($operating_order->attachments  as $attachment)
                                     @if($attachment->file_type == "other_attachment")
+                                    <?php $url = $attachment->file_path ; 
+                                    $url_= (app()->environment('production'))? asset("public/storage/$url") : asset("/storage/$url");?>   
                                         <div class="asset-wrapper">
-                                            <img src="{{asset('storage/'.$attachment->file_path)}}" style  = "
+                                            <img src="{{ $url_}}" style  = "
                                              margin: 10px;
                                              width: 60px;    
                                              height: 60px;      
@@ -682,8 +691,10 @@
                             @if(!empty($operating_order->attachments)) 
                                 @foreach($operating_order->attachments  as $attachment)
                                     @if($attachment->file_type == "baptizing")
+                                    <?php $url = $attachment->file_path ; 
+                                    $url_= (app()->environment('production'))? asset("public/storage/$url") : asset("/storage/$url");?>   
                                         <div class="asset-wrapper">
-                                            <img src="{{asset('storage/'.$attachment->file_path)}}" style  = " 
+                                            <img src="{{$url_}}" style  = " 
                                              margin: 10px;
                                              width: 60px;    
                                              height: 60px;      

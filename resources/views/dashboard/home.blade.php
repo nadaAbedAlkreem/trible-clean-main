@@ -1,6 +1,9 @@
 @extends('Dashboard.layout.app')
 
 @section('content')
+
+
+
 <!doctype html>
 <html lang="en">
  
