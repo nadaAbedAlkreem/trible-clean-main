@@ -28,4 +28,19 @@ class StoreItemRequest extends FormRequest
             'name_en' => 'nullable|string|max:255',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name_ar.required' => __('validation.name_ar.required'),
+            'name_ar.exists' => __('validation.name_ar.string'),
+            'name_ar.required' => __('validation.name_ar.max'),
+            'name_en.min' => __('validation.name_en.string'),
+            'name_en.required' => __('validation.name_en.max'),
+        ];
+    }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+    }
 }

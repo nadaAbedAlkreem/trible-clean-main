@@ -24,7 +24,7 @@ class UpdateItemOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'delivered_quantity' => 'number|',
+            'delivered_quantity' => 'number',
         ];
     }
 }

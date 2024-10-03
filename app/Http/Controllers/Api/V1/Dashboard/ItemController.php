@@ -1,16 +1,15 @@
 <?php
-
-
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Api\V1\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Customer;
-use App\Repositories\ICustomerRepository;
-use App\Http\Requests\StoreCustomerRequest;
-use App\Http\Requests\UpdateCustomerRequest;
+use App\Repositories\IItemRepository;
 
-class CustomerController extends Controller
+use App\Models\Item;
+use App\Http\Requests\StoreItemRequest;
+use App\Http\Requests\UpdateItemRequest;
+
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +17,14 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     private $customerRepository ;
+     private $itemRepository ;
 
-     public function __construct(ICustomerRepository $customerRepository   ){
+     public function __construct(IItemRepository $itemRepository   ){
  
-         $this->customerRepository = $customerRepository;
+         $this->itemRepository = $itemRepository;
          
      }
+ 
     public function index()
     {
         //
@@ -43,10 +43,10 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCustomerRequest  $request
+     * @param  \App\Http\Requests\StoreItemRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCustomerRequest $request)
+    public function store(StoreItemRequest $request)
     {
         //
     }
@@ -54,10 +54,10 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(Item $item)
     {
         //
     }
@@ -65,10 +65,10 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit(Item $item)
     {
         //
     }
@@ -76,11 +76,11 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCustomerRequest  $request
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Http\Requests\UpdateItemRequest  $request
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCustomerRequest $request, Customer $customer)
+    public function update(UpdateItemRequest $request, Item $item)
     {
         //
     }
@@ -88,10 +88,10 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Item $item)
     {
         //
     }

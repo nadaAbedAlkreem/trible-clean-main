@@ -30,4 +30,38 @@ class StoreCustomerRequest extends FormRequest
             'address' => 'required|string|max:255',
         ];
     }
+
+    public function messages()
+        {
+            return [
+                'name.required' => __('validation.name.required'),
+                'name.string' => __('validation.name.string'),
+                'name.max' => __('validation.name.max'),
+                
+                'phone_number.required' => __('validation.phone_number.required'),
+                'phone_number.string' => __('validation.phone_number.string'),
+                'phone_number.max' => __('validation.phone_number.max'),
+                'phone_number.unique' => __('validation.phone_number.unique'),
+                
+                'email.required' => __('validation.email.required'),
+                'email.email' => __('validation.email.email'),
+                'email.max' => __('validation.email.max'),
+                'email.unique' => __('validation.email.unique'),
+                
+                'address.required' => __('validation.address.required'),
+                'address.string' => __('validation.address.string'),
+                'address.max' => __('validation.address.max'),
+            ];
+        }
+
+        public  function getDataWithImage()
+        {
+            $data=$this->validated();
+    
+            dd($data);
+           
+      
+             return $data;
+        }
+
 }

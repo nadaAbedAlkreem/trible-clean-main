@@ -10,6 +10,7 @@ class Collector extends Model
 {
     use HasFactory   , SoftDeletes;
 
+    protected $fillable = ['name', 'phone_number', 'email'  ,'address' ];
 
     public function payment()
     {

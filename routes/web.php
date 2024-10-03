@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.pages.operating-command.details');
-});
-
-
+ 
 
 include_once __DIR__.'/api.php';
 include_once __DIR__.'/admin.php';
+ 

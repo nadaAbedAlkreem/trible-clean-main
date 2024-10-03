@@ -17,4 +17,16 @@ class Representative extends Model
     {
         return $this->hasMany(OperatingOrder::class, 'representative_id');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+    
+        static::deleting(function ($representative) {
+            // Soft delete related records
+            $representative->operatingOrders()->each(function ($itemOrders) {
+                $operatingOrders->delete(); // This will call the soft delete
+            });
+        });
+    }
 }

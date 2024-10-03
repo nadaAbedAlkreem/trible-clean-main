@@ -26,8 +26,9 @@ class StorePaymentRequest extends FormRequest
      */
     public function rules()
     {   
-        $remaining = floatval($this->input('remaining'));
 
+        $remaining = floatval($this->input('remaining'));
+     
          return [
             'operating_order_id' => 'required|exists:operating_orders,id', // Ensures the operation_order_id exists in the operation_orders table
             'amount' => ['required', 'numeric', 'min:0',new ResidualEqualToZero($remaining) , new LessThanOrEqualToResidual($remaining)],
@@ -35,15 +36,16 @@ class StorePaymentRequest extends FormRequest
             'payment_method' => 'required|string|max:255', // Ensures payment_method is a string and not too long
             'collector_id' => 'required|numeric|exists:collectors,id', // Ensures collector is a string and not too long
             'notes' => 'nullable|string', // Ensures notes are a string if provided, but are optional
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image
-
+            'file' => $this->hasFile('file_path') 
+            ? 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048' // If file is uploaded
+            : 'required|string|max:255', // If only file path is passed       
         ];
     }
 
     public  function getDataWithImage()
     {
         $data=$this->validated();
-
+ 
          if ($this->hasFile('file')) 
         {
             $path = 'uploads/images/payment/';
@@ -53,4 +55,22 @@ class StorePaymentRequest extends FormRequest
         }
          return $data;
     }
+
+    
+        public function messages()
+        {
+            return [
+                'operating_order_id.required' => __('validation.operating_order_id.required'),
+                'operating_order_id.exists' => __('validation.operating_order_id.exists'),
+                'amount.required' => __('validation.amount.required'),
+                'amount.numeric' => __('validation.amount.numeric'),
+                'amount.min' => __('validation.amount.min'),
+                'payment_date.required' => __('validation.payment_date.required'),
+                'payment_date.date' => __('validation.payment_date.date'),
+                // Add all other validation messages here as well
+            ];
+        }
+        protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+        {
+        }
 }

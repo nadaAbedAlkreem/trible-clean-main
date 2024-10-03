@@ -26,7 +26,9 @@ class StoreUpdateRequest extends FormRequest
     {
         return [
             'operating_order_id' => 'required|exists:operating_orders,id', // Ensure the operation_order_id exists in the operation_orders table
-            'file_path' => 'file|mimes:jpeg,png,pdf|max:2048',
+            'file_path' => $this->hasFile('file_path') 
+            ? 'file|mimes:jpeg,png,jpg,gif,svg|max:2048' // If file is uploaded
+            : 'string|max:255', // If only file path is passed       
             'description_ar' => 'required|string|max:255',
          ];
     }
@@ -43,5 +45,22 @@ class StoreUpdateRequest extends FormRequest
             $data['file_path'] = $path.$nameImage ;
         }
          return $data;
+    }
+
+    public function messages()
+    {
+        return [
+            'operating_order_id.required' => __('validation.operating_order_id.required'),
+            'operating_order_id.exists' => __('validation.operating_order_id.exists'),
+            'file_path.file' => __('validation.file_path.file'),
+            'file_path.mimes' => __('validation.file_path.mimes'),
+            'file_path.max' => __('validation.file_path.max'),
+            'description_ar.required' => __('validation.description_ar.required'),
+            'description_ar.string' => __('validation.description_ar.string'),
+            'description_ar.max' => __('validation.description_ar.max'),
+        ];
+    }
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
     }
 }

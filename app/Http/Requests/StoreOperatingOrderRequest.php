@@ -32,4 +32,24 @@ class StoreOperatingOrderRequest extends FormRequest
             'total_amount' => 'required|numeric|min:0', // Ensures total_amount is a valid decimal number and not negative
         ];
     }
+
+    
+
+    public function messages()
+    {
+        return [
+            'operating_order_id.required' => __('validation.operating_order_id.required'),
+            'operating_order_id.exists' => __('validation.operating_order_id.exists'),
+            'amount.required' => __('validation.amount.required'),
+            'amount.numeric' => __('validation.amount.numeric'),
+            'amount.min' => __('validation.amount.min'),
+            'payment_date.required' => __('validation.payment_date.required'),
+            'payment_date.date' => __('validation.payment_date.date'),
+            // Add all other validation messages here as well
+        ];
+    }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+    }
 }

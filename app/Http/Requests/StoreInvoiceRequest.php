@@ -26,12 +26,34 @@ class StoreInvoiceRequest extends FormRequest
     {
         return [
             'operating_order_id' => 'required|exists:operating_orders,id', // Ensure the operation_order_id exists in the operation_orders table
-            'file_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Ensure file_path is a string and not too long
+            'file_path' => $this->hasFile('file_path') 
+            ? 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048' // If file is uploaded
+            : 'required|string|max:255', // If only file path is passed       
             'number_invoice' => 'required|numeric|min:0|max:9999999',
             'amount_Invoice' => 'required|numeric|min:0|max:9999999',
-
         ];
     }
+
+    public function messages()
+        {
+            return [
+                'operating_order_id.required' => __('validation.operating_order_id.required'),
+                'operating_order_id.exists' => __('validation.operating_order_id.exists'),
+                'file_path.required' => __('validation.file_path.required'),
+                'file_path.image' => __('validation.file_path.image'),
+                'file_path.mimes' => __('validation.file_path.mimes'),
+                'file_path.max' => __('validation.file_path.max'),
+                'number_invoice.required' => __('validation.number_invoice.required'),
+                'number_invoice.numeric' => __('validation.number_invoice.numeric'),
+                'number_invoice.min' => __('validation.number_invoice.min'),
+                'number_invoice.max' => __('validation.number_invoice.max'),
+                'amount_invoice.required' => __('validation.amount_invoice.required'),
+                'amount_invoice.numeric' => __('validation.amount_invoice.numeric'),
+                'amount_invoice.min' => __('validation.amount_invoice.min'),
+                'amount_invoice.max' => __('validation.amount_invoice.max'),
+            ];
+        }
+
 
 
     
@@ -46,5 +68,9 @@ class StoreInvoiceRequest extends FormRequest
             $data['file_path'] = $path.$nameImage ;
         }
          return $data;
+    }
+
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
     }
 }

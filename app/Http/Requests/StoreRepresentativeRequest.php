@@ -29,4 +29,25 @@ class StoreRepresentativeRequest extends FormRequest
             'email' => 'required|email|unique:representatives,email', //
         ];
     }
+
+        public function messages()
+    {
+        return [
+            'name.required' => __('validation.name.required'),
+            'name.string' => __('validation.name.string'),
+            'name.max' => __('validation.name.max'),
+
+            'phone_number.required' => __('validation.phone_number.required'),
+            'phone_number.string' => __('validation.phone_number.string'),
+            'phone_number.max' => __('validation.phone_number.max'),
+            'phone_number.unique' => __('validation.phone_number.unique'),
+
+            'email.required' => __('validation.email.required'),
+            'email.email' => __('validation.email.email'),
+            'email.unique' => __('validation.email.unique'),
+        ];
+    }
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    {
+    }
 }

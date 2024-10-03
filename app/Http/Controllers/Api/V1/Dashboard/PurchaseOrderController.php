@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Api\V1\Dashboard;
 use App\Http\Controllers\Controller;
  
 use Illuminate\Http\Request;
@@ -9,10 +9,12 @@ use App\Repositories\IPurchaseOrderRepository;
 use App\Repositories\IOperatingOrderRepository;
 use App\Http\Requests\StorePurchaseOrderRequest;
 use App\Http\Requests\UpdatePurchaseOrderRequest;
-
+use App\Traits\ResponseTrait;
+use App ; 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class PurchaseOrderController extends Controller
 {
-    
+    use   ResponseTrait ; 
     /**
      * Display a listing of the resource.
      *
@@ -96,26 +98,18 @@ class PurchaseOrderController extends Controller
      */
     public function destroy($id)
     {
-         $this->purchaseOrderRepository->delete($id);
-          $totalPriceAfterTax = 0;
-            $purchase_orders  = $this->purchaseOrderRepository->getWith(['orderItems' ]);
-             $operating_order = $this->operatingOrderRepository->findOne(1);
-             foreach ($purchase_orders as $purchaseOrder) {
-               if(!empty($purchaseOrder)){
-                   if(!empty($purchaseOrder->orderItems)){
-                   if($purchaseOrder->orderItems['operating_order_id']  == 1)
-                {
-                    $totalPriceAfterTax += floatval($purchaseOrder->total_price_after_tax);
-                }
-                   }
-               }
-            }
-                         $profit          = $operating_order->total_amount - $totalPriceAfterTax    ; 
+       try
+      {
+        $this->purchaseOrderRepository->delete($id); 
+         return  $this->successResponse('DELETE_SUCCESS', [], 201, App::getLocale())  ; 
+      }catch (ModelNotFoundException $e) 
+      {
+         return $this->errorResponse('DELETE_FAILED', [],  422, App::getLocale());
+      }
 
-            
-              return response()->json([
-             'totalPriceAfterTax' => $totalPriceAfterTax ,
-             'profit'             => $profit
-        ]);
+      
     }
+
+
+   
 }

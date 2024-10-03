@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Api\V1\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -7,9 +7,15 @@ use App\Models\ItemOrder;
 use App\Repositories\IItemOrderRepository;
 use App\Http\Requests\StoreItemOrderRequest;
 use App\Http\Requests\UpdateItemOrderRequest;
+use App ; 
+use App\Traits\ResponseTrait;
+use App\Exceptions\ItemOrderException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class ItemOrderController extends Controller
-{
+{    
+    use  ResponseTrait   ; 
     /**
      * Display a listing of the resource.
      *
@@ -78,35 +84,27 @@ class ItemOrderController extends Controller
      * @param  \App\Models\ItemOrder  $itemOrder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {   
- 
-        foreach ($request->items as $item) {
-            if($item['delivered_quantity']  > $item['total_quantity'] )
-            {
-                return response()->json(['message' => 'no should delivered quantity great at total quantity '] ,500);
-
+    public function updateDeliveredQuantityOfOrderItems(Request $request)
+    {
+        try {
+            $update = false;
+            foreach ($request->items as $item) {
+                $updateResult = $this->itemOrderRepository->updateDeliveredQuantity($item);
+                if ($updateResult) {
+                    $update = true; // If any item is updated successfully
+                }
             }
 
-            if($item['total_quantity'] == $item['delivered_quantity'] )
-            {
-                $this->itemOrderRepository->update([
-                    'delivered_quantity' => $item['delivered_quantity'],
-                    'status' => 'delivered'
-                ], $item['id']);
-                // $this->itemOrderRepository->update(['status' =>  'delivered'], $item['id']);
-
-            }
-         
-            else 
-            {
-                $this->itemOrderRepository->update(['delivered_quantity' => $item['delivered_quantity']], $item['id']);
-
-            }
+            return $update ? 
+                $this->successResponse('ITEMS_UPDATED_SUCCESSFULLY',[], 200, App::getLocale()) : 
+                $this->errorResponse('UPDATE_FAILED', [] , 400, App::getLocale());
+        } catch (ItemOrderException $e) {
+            return $this->errorResponse('INVALID_DELIVERED_QUANTITY', [],  400, App::getLocale());
+        } catch (\Exception $e) {
+            return $this->errorResponse('EXCEPTION_MESSAGE', [] ,500, App::getLocale());
         }
-    
-        return response()->json(['message' => 'Items updated successfully']);
-     }
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -116,6 +114,13 @@ class ItemOrderController extends Controller
      */
     public function destroy($id)
     {
-         $this->itemOrderRepository->Delete($id);
+       try
+      {
+        $this->itemOrderRepository->Delete($id);
+        return  $this->successResponse('DELETE_SUCCESS', [], 201, App::getLocale())  ; 
+      }catch (ModelNotFoundException $e) 
+      {
+         return $this->errorResponse('DELETE_FAILED', [] ,  422, App::getLocale());
+      }
     }
 }

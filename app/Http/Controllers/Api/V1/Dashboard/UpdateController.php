@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Api\V1\Dashboard;
 
 use App\Http\Controllers\Controller;
 
@@ -7,10 +7,13 @@ use App\Models\Update;
 use App\Http\Requests\StoreUpdateRequest;
 use App\Http\Requests\UpdateUpdateRequest;
 use App\Repositories\IUpdateRepository;
+use App\Traits\ResponseTrait;
+use App ; 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UpdateController extends Controller
-{
-
+{  
+    use ResponseTrait  ; 
     private $updateRepository ;
 
     public function __construct(IUpdateRepository $updateRepository   ){
@@ -46,7 +49,16 @@ class UpdateController extends Controller
      */
     public function store(StoreUpdateRequest $request)
     {      
-            $this->updateRepository->create($request->getDataWithImage());
+         try {
+            $create = $this->updateRepository->create($request->getDataWithImage());
+            return $this->successResponse('CREATE_ITEM_SUCCESSFULLY',$create, 201, App::getLocale());
+        } catch (\Illuminate\Validation\ValidationException $e) {
+      
+            return $this->errorResponse('VETIFICATION_ERRORS', ['error' => $e->errors()], 422  ,App::getLocale()); // Return validation errors
+        }
+    
+  
+  
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Api\V1\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,10 +9,14 @@ use App\Http\Requests\StoreAttachmentRequest;
 use App\Http\Requests\UpdateAttachmentRequest;
 use Yajra\DataTables\DataTables;
 use App\Services\AttachmentDatatableService ; 
-
+use App\Traits\ResponseTrait;
+use App ; 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AttachmentController extends Controller
-{
+{   
+    use ResponseTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -31,20 +35,7 @@ class AttachmentController extends Controller
     }
     public function index(Request $request  , AttachmentDatatableService $attachmentDatatableService)
     {
-         
-        // $data = Slider::with(['news'])->select('*')->where('language' , App::getLocale())->get();
-        if ($request->ajax()) 
-        {
-            $data = Slider::with('news')->select('*')->where('language' , App::getLocale());    
-            try {
-                return $attachmentDatatableService->handle($request,$data);
-            } catch (Throwable $e) {
-                return response([
-                    'message' => $e->getMessage(),
-                ], 500);
-            }
-        }
-    //    return view('Dashboard.sliders.index' ,["CurrentLang" => App::getLocale()]);
+ 
     }
 
     /**
@@ -64,9 +55,15 @@ class AttachmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAttachmentRequest $request)
-    {   
-        
-        $this->attachmentRepository->create($request->getDataWithImage());
+    {    
+        try {
+            // Proceed with storing data after validation
+            $create =  $this->attachmentRepository->create($request->getDataWithImage());
+            return $this->successResponse('CREATE_ITEM_SUCCESSFULLY',$create, 201, App::getLocale());
+        } catch (\Illuminate\Validation\ValidationException $e) {
+      
+            return $this->errorResponse('VETIFICATION_ERRORS', ['error' => $e->errors()],422  ,App::getLocale()); // Return validation errors
+        }
     }
 
     /**
@@ -111,7 +108,13 @@ class AttachmentController extends Controller
      */
     public function destroy($id)
     {
-         $this->attachmentRepository->delete($id);
-
+        try
+         {
+            $this->attachmentRepository->delete($id) ; 
+            return  $this->successResponse('DELETE_SUCCESS', [], 201, App::getLocale())  ; 
+         }catch (ModelNotFoundException $e) 
+         {
+            return $this->errorResponse('DELETE_FAILED', [],  422, App::getLocale());
+         }
     }
 }

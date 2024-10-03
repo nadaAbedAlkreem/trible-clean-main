@@ -1,15 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Api\V1\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
 use App\Repositories\IInvoiceRepository;
+use App\Services\AttachmentDatatableService ; 
+use App\Traits\ResponseTrait;
+use App ; 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class InvoiceController extends Controller
-{
+{   
+    use  ResponseTrait  ; 
     private $invoiceRepository ;
 
     public function __construct(IInvoiceRepository $invoiceRepository   ){
@@ -45,8 +50,14 @@ class InvoiceController extends Controller
      */
     public function store(StoreInvoiceRequest $request)
     {
-        $this->invoiceRepository->create($request->getDataWithImage());
-
+         try {
+            $create = $this->invoiceRepository->create($request->getDataWithImage());
+            return $this->successResponse('CREATE_ITEM_SUCCESSFULLY',$create, 201, App::getLocale());
+        } catch (\Illuminate\Validation\ValidationException $e) {
+      
+            return $this->errorResponse('VETIFICATION_ERRORS', ['error' => $e->errors()], 422  ,App::getLocale()); // Return validation errors
+        }
+   
     }
 
     /**

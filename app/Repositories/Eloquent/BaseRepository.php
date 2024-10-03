@@ -138,7 +138,13 @@ abstract class BaseRepository implements BaseRepositoryInterface
      */
     public function getWhere(array $conditions, $orderBy = ['column' => 'id', 'dir' => 'DESC'])
     {
-        return $this->model->where($data)->orderBy($orderBy['column'], $orderBy['dir'])->get();
+        return $this->model->where($conditions)->orderBy($orderBy['column'], $orderBy['dir'])->get();
+
+        
+    }
+    public function getWhereFirst(array $conditions, $orderBy = ['column' => 'id', 'dir' => 'DESC'])
+    {
+        return $this->model->where($conditions)->orderBy($orderBy['column'], $orderBy['dir'])->first();
 
         
     }
@@ -214,10 +220,8 @@ abstract class BaseRepository implements BaseRepositoryInterface
      */
     public function delete($id)
     {
-        // return $this->model->findOrFail($id)->update(['deleted_at' => Carbon::now(), 'deleted_by' => Auth::user()->id]);
-
-        return $this->model->findOrFail($id)->delete();
-     }
+          return $this->model->findOrFail($id)->delete();
+    }
 
     /**
      * force delete row for the given model

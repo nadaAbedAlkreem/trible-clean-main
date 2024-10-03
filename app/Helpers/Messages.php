@@ -6,11 +6,12 @@ use Illuminate\Support\Facades\App;
 
 class Messages
  {
-    private static $Messages = [
+    private static $Messages_EN = [
         // general
         'operation accomplished successfully' => 'Operation accomplished successfully',
 
         //AUTH
+        'FINANCIA_GET_SUCCESSFULLY' => 'Financial data acquisition process completed',
         'REGISTERED_SUCCESSFULLY' => 'Account created successfully',
         'BLOCKED_DEVICE' => 'Account is blocked',
         'REGISTRATION_CLOSED' => 'Registration closed by system admin',
@@ -80,8 +81,13 @@ class Messages
         'NO_ACCESS_PERMISSION' => 'You dont have access permission to this component',
         'NOT_FOUND' => 'Object not fount',
         'REORDER_SUCCESS' => 'The request was successfully re-order',
-
-
+        'INTERNAL_SERVER_ERROR'  => 'internal server error'  , 
+        // ORDERS 
+        'ORDER_STATUS_UPDATED' => 'Order request updated', 
+        'UPDATE_FAILED' => 'Failed to update update',
+        'INVALID_UPDATE_ELEMENT' => 'Invalid update item',
+        'ORDER_NOT_FOUND' =>  'order not found',
+        'ORDER_DETAILS_RETRIEVED' => 'order details retrieved' ,
         // Order Status
         'PENDING' => 'Your request was created successfully',
         'ACCEPTED' => 'Your request has been accepted by a distributor: ',
@@ -93,14 +99,160 @@ class Messages
         'COMPLETED' => 'We are here to serve you',
         'CANCELLED_BY_VENDOR' => 'We apologize your order has been canceled by a distributor :',
         'CANCELLED_BY_CUSTOMER' => 'The request was rejected by the customer:',
+        'INVALIDE_SERVICE_TYPE'  => 'invalid service type' , 
+        'CREATE_USERS_ACCOUNT' => 'successfuly create accout',
+        'ID_NOT_FOUND' => 'The specified identifier was not found' ,
+        'ITEMS_UPDATED_SUCCESSFULLY' => 'The items have been updated successfully.',
+        'INVALID_DELIVERED_QUANTITY' => 'Delivered quantity cannot be greater than total quantity.',
+        'EXCEPTION_MESSAGE' => 'An error occurred: :message',
+        'PURCHASES_ORDER_ITEMS_NOT_FOUND' =>  ' Purchase data cannot be found for this order.' , 
+        'PURCHASES_ORDER_ITEMS_RETRIEVED' => 'Order purchases have been returned' , 
+        'PAYMENTS_ORDER_RETRIEVED' => 'Order Payments have been returned' , 
+        'PAYMENTS_ORDER_NOT_FOUND' => 'Payments data cannot be found for this order.'  , 
+        'ATTACHMENTS_ORDER_DETAILS_RETRIEVED'  => 'Order attachments have been returned . '  , 
+        'ATTACHMENTS_ORDER_NOT_FOUND' => 'Attachments data cannot be found for this order.' ,
+        'VETIFICATION_ERRORS'  => 'There is an error in the entered data', 
+        'INVOICES_ORDER_DETAILS_RETRIEVED'  => 'Order invoices have been returned . '  , 
+        'INVOICES_ORDER_NOT_FOUND' => 'invoices data cannot be found for this order.' ,
+        'UPDATES_ORDER_DETAILS_RETRIEVED'  => 'Order updates have been returned . '  , 
+        'UPDATES_ORDER_NOT_FOUND' => 'Updates data cannot be found for this order.' ,
+        'CREATE_ITEM_SUCCESSFULLY' => 'Created successfully' , 
+        'DELETE_ITEM_SUCCESSFULLY' => 'Deleted successfully' , 
+        'DATA_RETRIEVED_SUCCESSFULLY' => 'Delivered data successfully',
+        'DATA_RETRIEVED_FAILD' => 'Delivered data failed',
 
-        'New Message' => 'New Message',
-        'A site has been sent' => 'A site has been sent',
+        'CREATE_ITEM_FAILD' => 'Created Failed' , 
+        'DELETE_ITEM_FAILD' => 'Deleted Failed' , 
+        'UPDATE_ELEMENT_NOT_FOUND' => 'Update failed You must enter the data you want to update'
 
-    ];
+    ]; 
 
-    public static function getMessage($code)
-    {
-        return self::$Messages[$code]  ;
+
+
+    private static $Messages_AR = [
+        // General
+        'FINANCIA_GET_SUCCESSFULLY' => 'تمت عملية الحصول على بيانات المالية',
+        'DATA_RETRIEVED_SUCCESSFULLY' => ' . تم استرجاع البيانات بنجاح',
+        'DATA_RETRIEVED_FAILD' => ' . فشل في استرجاع البيانات ',
+        'PURCHASES_ORDER_ITEMS_RETRIEVED' => 'تم استرجاع مشتريات الطلبية ' , 
+        'PAYMENTS_ORDER_RETRIEVED' => 'تم استرجاع  دفعات  الطلبية ' , 
+        'ATTACHMENTS_ORDER_DETAILS_RETRIEVED'  => 'تم استرجاع   مرفقات   الطلبية '  , 
+        'UPDATES_ORDER_DETAILS_RETRIEVED'  => 'تم استرجاع   تحديثات   الطلبية '  , 
+        'UPDATES_ORDER_NOT_FOUND' => 'لا يمكننا العثور على هذا   تحديثات  الطلبية ' ,     
+        'CREATE_ITEM_SUCCESSFULLY' => ' تم انشاء العنصر بنجاح ' ,  
+        'DELETE_ITEM_SUCCESSFULLY' => ' تم حذف  العنصر بنجاح ' , 
+        'CREATE_ITEM_FAILD' => 'فشل في عملية الانشاء العنصر ' , 
+        'DELETE_ITEM_FAILD' => 'فشل في عملية حذف العنصر ' , 
+        'UPDATE_ELEMENT_NOT_FOUND' => 'فشل في تحديث يجب عليك ادخال البيانات التي تريد تحديثها ' ,
+        'INVOICES_ORDER_DETAILS_RETRIEVED' => 'تم إرجاع فواتير الطلب.' ,
+        'INVOICES_ORDER_NOT_FOUND' => 'لم يتم العثور على بيانات الفواتير لهذا الطلب.' ,
+        'VETIFICATION_ERRORS'  => 'يوجد خطأ في البيانات المدخلة ', 
+
+         // AUTH
+        'ITEMS_UPDATED_SUCCESSFULLY' => 'تم تحديث العناصر بنجاح.',
+         'INVALID_DELIVERED_QUANTITY' => 'يجب ألا تكون الكمية المسلمة أكبر من الكمية الإجمالية.',
+        'EXCEPTION_MESSAGE' => 'حدث خطأ: :message',
+         'ORDER_STATUS_UPDATED' => 'تم تحديث الحالة لطلبية ', 
+        'UPDATE_FAILED'  => 'فشل في عملية التحديث ' ,  
+        'INVALID_UPDATE_ELEMENT' =>   'عنصر التحديث غير صالح'  , 
+        
+        'REGISTERED_SUCCESSFULLY' => 'تم إنشاء الحساب بنجاح',
+        'BLOCKED_DEVICE' => 'الحساب محظور',
+        'REGISTRATION_CLOSED' => 'التسجيل مغلق من قبل مسؤول النظام',
+        'AUTH_CODE_ERROR' => 'خطأ في رمز التفعيل، حاول مرة أخرى',
+        'AUTH_CODE_SENT_BEFORE' => 'تم إرسال رمز التفعيل مسبقًا، الرجاء التحقق من رسائلك!',
+        'NO_AUTH_CODE' => 'تم رفض العملية، الرمز غير صحيح',
+        'UNAUTHORISED' => 'غير مصرح، الرجاء تسجيل الدخول',
+        'IN_ACTIVE_ACCOUNT' => 'يرجى تفعيل حسابك، تحقق من رسائلك',
+        'ERROR_CREDENTIALS' => 'خطأ في بيانات تسجيل الدخول، تحقق وحاول مرة أخرى',
+        'LOGGED_OUT_SUCCESSFULLY' => 'تم تسجيل الخروج بنجاح',
+        'LOGGED_IN_SUCCESSFULLY' => 'تم تسجيل الدخول بنجاح',
+        'LOGIN_IN_FAILED' => 'فشل في تسجيل الدخول، حاول مرة أخرى!',
+        'NO_ACCOUNT' => 'رقم الهاتف غير مسجل!',
+        'AUTH_CODE_SENT' => 'تم إرسال رمز التفعيل بنجاح',
+        'ACCOUNT_EXIST' => 'البريد الإلكتروني مسجل مسبقًا!',
+        'MOBILE_EXIST' => 'رقم الهاتف مسجل مسبقًا!',
+        'SUCCESS_AUTH' => 'تم تفعيل الحساب بنجاح',
+        'exam_fail' => 'نعتذر، لم تتمكن من اجتياز الاختبار',
+        'attempts' => 'لقد تجاوزت عدد المحاولات المسموح بها',
+        'profile_exam' => 'يرجى إكمال ملفك الشخصي',
+        'ITEM_NOT_FOUND' => 'لا يمكننا العثور على هذا السجل',
+        'SEND_FAILED' => 'لقد تم الإرسال مسبقًا',
+        'BASKET_IS_EMPTY' => 'سلة التسوق فارغة',
+        'INVALIDE_SERVICE_TYPE'  => 'نوع الخدمة غير صالح' , 
+        'INTERNAL_SERVER_ERROR'  => 'خطأ في الخادم الداخلي'  , 
+        'PURCHASES_ORDER_ITEMS_NOT_FOUND' =>  ' لا يمكن العثور على بيانات المشتريات في هذه الطلبية' , 
+        'PAYMENTS_ORDER_NOT_FOUND' => ' لا يمكن العثور على بيانات الدفعات   في هذه الطلبية'  , 
+        // PASSWORD
+        'FORGET_PASSWORD_SUCCESS' => 'تم إرسال رمز إعادة تعيين كلمة المرور بنجاح',
+        'FORGET_PASSWORD_FAILED' => 'فشل في إرسال رمز إعادة تعيين كلمة المرور!',
+        'PASSWORD_RESET_CODE_CORRECT' => 'رمز إعادة تعيين كلمة المرور صحيح، قم بتعيين كلمة مرور جديدة',
+        'PASSWORD_RESET_CODE_ERROR' => 'خطأ في رمز إعادة تعيين كلمة المرور، حاول مرة أخرى',
+        'NO_PASSWORD_RESET_CODE' => 'لا يوجد طلب لإعادة تعيين كلمة المرور، تم رفض العملية!',
+        'PASS_RESET_CODE_SENT_BEFORE' => 'تم إرسال رمز إعادة تعيين كلمة المرور مسبقًا، تحقق من رسائلك!',
+        'exp_date' => 'انتهت صلاحية هذا الاختبار',
+        'ID_NOT_FOUND' => 'لم يتم العثور على المعرف المحدد.',
+    
+        'RESET_PASSWORD_SUCCESS' => 'تم إعادة تعيين كلمة المرور بنجاح',
+        'RESET_PASSWORD_FAILED' => 'فشل في إعادة تعيين كلمة المرور!',
+        'CART_SUCCESS' => 'تمت الإضافة إلى السلة بنجاح',
+    
+        'CONTACT_US_REQUEST_SUCCESS' => 'تم إرسال طلب الاتصال بنجاح، شكرًا لك',
+        'CONTACT_US_REQUEST_FAILED' => 'فشل في إرسال طلب الاتصال، حاول مرة أخرى',
+    
+        'USER_UPDATED_SUCCESS' => 'تم تحديث الملف الشخصي بنجاح',
+        'USER_UPDATED_FAILED' => 'فشل في تحديث الملف الشخصي، حاول مرة أخرى',
+    
+        'PASSWORD_SENT' => 'تم إرسال كلمة المرور بنجاح، استخدمها لتسجيل الدخول إلى حسابك',
+        'PASSWORD_SEND_FAILED' => 'فشل في إرسال كلمة المرور، حاول مرة أخرى',
+        'PASSWORD_ALREADY_SET' => 'تم تعيين كلمة المرور مسبقًا!',
+        'PASSWORD_NOT_SET' => 'يرجى طلب كلمة مرور حسابك!',
+    
+        'MULTI_ACCESS_ERROR' => 'لا يمكن تسجيل الدخول إلى نفس الحساب من جهازين في آن واحد!',
+        'SECURITY_CHECK_SUCCESS' => 'تم إرسال حالتك بنجاح، كن آمنًا',
+        'SECURITY_CHECK_DUPLICATE' => 'تم إرسال حالتك مسبقًا، كن آمنًا',
+        'SECURITY_CHECK_FAILED' => 'حدث خطأ في إرسال حالتك، حاول مرة أخرى',
+    
+        'CREATE_SUCCESS' => 'تم الإنشاء بنجاح',
+        'CREATE_FAILED' => 'فشل في الإنشاء، حاول مرة أخرى',
+    
+        'DELETE_SUCCESS' => 'تم الحذف بنجاح',
+        'DELETE_FAILED' => 'فشل في الحذف، حاول مرة أخرى',
+    
+        'REQUEST_SUCCESS' => 'تمت العملية بنجاح',
+        'UPDATE_SUCCESS' => 'تم التحديث بنجاح',
+        'UPDATE_FAILED' => 'فشل في التحديث، حاول مرة أخرى',
+    
+        'favorite' => 'تمت الإضافة إلى قائمتك المفضلة',
+        'favorite_delete' => 'تم الحذف من قائمتك المفضلة',
+        'PASSWORD_changed' => 'تم تغيير كلمة المرور بنجاح',
+        'NO_ACCESS_PERMISSION' => 'ليس لديك صلاحية الوصول إلى هذا المكون',
+        'NOT_FOUND' => 'العنصر غير موجود',
+        'REORDER_SUCCESS' => 'تم إعادة ترتيب الطلب بنجاح',
+        //  ORDERS 
+        'ORDER_NOT_FOUND' => ' لم يتم العثور على الطلبية ',
+        'ORDER_DETAILS_RETRIEVED' => 'تم استرداد تفاصيل الطلب' ,
+
+
+        // Order Status
+        'PENDING' => 'تم إنشاء طلبك بنجاح',
+        'ACCEPTED' => 'تم قبول طلبك من قبل الموزع:',
+        'DECLINED' => 'عذرًا، تم رفض طلبك من قبل الموزع:',
+        'ONWAY' => 'الموزع في طريقه إليك',
+        'PROCESSING' => 'طلبك قيد التجهيز',
+        'FILLED' => 'تم تجهيز طلبك',
+        'DELIVERED' => 'تم تسليم طلبك، الرجاء تأكيد التسليم',
+        'COMPLETED' => 'نحن هنا لخدمتك',
+        'CANCELLED_BY_VENDOR' => 'نعتذر، تم إلغاء طلبك من قبل الموزع:',
+        'CANCELLED_BY_CUSTOMER' => 'تم رفض الطلب من قبل العميل:',
+    
+        'CREATE_USERS_ACCOUNT' => 'تم إنشاء الحساب بنجاح',
+     ];
+    
+
+    public static function getMessage($code , $lang = 'ar')
+    { 
+
+        return ($lang == "ar") ?  self::$Messages_AR[$code]   :  self::$Messages_EN[$code]  ;
     }
 }
